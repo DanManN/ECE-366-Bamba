@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/vim,c++,node,java,linux,macos,xcode,python,windows,database,sublimetext
+# Created by https://www.gitignore.io/api/vim,c++,node,java,linux,macos,xcode,python,windows,database,sublimetext,gradle
 
 ### C++ ###
 # Prerequisites
@@ -365,5 +365,20 @@ xcuserdata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
+### Gradle ###
+.gradle
+**/build/
 
-# End of https://www.gitignore.io/api/vim,c++,node,java,linux,macos,xcode,python,windows,database,sublimetext
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+# End of https://www.gitignore.io/api/vim,c++,node,java,linux,macos,xcode,python,windows,database,sublimetext,gradle
