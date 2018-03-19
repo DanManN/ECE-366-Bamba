@@ -28,6 +28,11 @@ public class App {
                                         );
             return 0;
         });
+        post("/login",(req,res) -> {
+            Boolean loginsuccess = Database.userLogin(req.queryParams("uname"),
+                    req.queryParams("psw"));
+            return loginsuccess;
+        });
 
 
 

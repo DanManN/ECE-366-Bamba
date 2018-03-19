@@ -128,4 +128,29 @@ public class Database {
         }
     }
 
+    public static boolean userLogin(String username,String pass){
+        Connection c = null;
+        PreparedStatement stmt = null;
+        String sql = "Select USERNAME,PASSWORD From USERS WHERE USERNAME=?";
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:bamba.db");
+            System.out.println("Opened database to login successfully");
+            stmt = c.prepareStatement(sql);
+            stmt.setString(1,username);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                if(rs.getString("PASSWORD").equals(pass)){
+                    return true;
+                }
+            }
+            c.close();
+            return false;
+        }
+        catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return false;
+        }
+    }
+
 }
