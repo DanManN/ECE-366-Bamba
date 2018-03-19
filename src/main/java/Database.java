@@ -26,12 +26,12 @@ public class Database {
                         " TITLE              TEXT    NOT NULL, " +
                         " USERID             INT     NOT NULL, " +
                         " PHOTO              TEXT    NOT NULL, " +
-                        " UPLOADDATE         DATE    NOT NULL, " +
+                        " UPLOADDATE         DATE, " +
                         " TAGS               TEXT, " +
                         " COLLECTIONS        BLOB)";
             stmt.executeUpdate(sql);
             sql = "CREATE TABLE IF NOT EXISTS COLLECTIONS " +
-                        "(COLLECTIONID INT PRIMARY KEY    NOT NULL, " +
+                        "(COLLECTIONID            INT PRIMARY KEY    NOT NULL, " +
                         " TITLE                   TEXT    NOT NULL, " +
                         " USERID                  INT     NOT NULL, " +
                         " CREATIONDATE            DATE    NOT NULL, " +
@@ -71,8 +71,62 @@ public class Database {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return false;
         }
-        System.out.println("Records created successfully");
+        System.out.println("User Records created successfully");
         return true;
+    }
+
+    public static boolean uploadPhoto(String pathName, String Title, String Tags, String username) {
+        int uid = getUserID(username);
+        Connection c = null;
+        PreparedStatement stmt = null;
+        if(uid == -1)
+            return false;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:bamba.db");
+            System.out.println("Opened database successfully");
+            String sql = "INSERT INTO PHOTOS (PHOTOID,USERID,TITLE,TAGS,PHOTO) " +
+                    "VALUES (?, ?, ?, ?, ?);";
+            stmt = c.prepareStatement(sql);
+
+            stmt.setInt(1,1);
+            stmt.setInt(2,uid);
+            stmt.setString(3,Title);
+            stmt.setString(4,Tags);
+            stmt.setString(5,pathName);
+            stmt.executeUpdate();
+            stmt.close();
+            c.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return false;
+        }
+        System.out.println("Photo Records created successfully");
+        return true;
+    }
+   private static int getUserID(String username){
+        Connection c = null;
+        PreparedStatement stmt = null;
+        String sql = "Select USERID From USERS WHERE USERNAME=?";
+        int userid=-1;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:bamba.db");
+            System.out.println("Opened database to get userid successfully");
+            stmt = c.prepareStatement(sql);
+            stmt.setString(1,username);
+            String fquery = stmt.toString();
+            ResultSet uid = stmt.executeQuery();
+            while(uid.next()) {
+                userid = uid.getInt("USERID");
+            }
+            c.close();
+            return userid;
+        }
+        catch (Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return -1;
+        }
     }
 
 }

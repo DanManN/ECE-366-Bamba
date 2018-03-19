@@ -13,5 +13,6 @@ public class App {
         //test database
         Database.initDatabase();
         Database.createUser("LeroyJenkins","Bob marley","bobsemail@place.com","password",2010,10,10);
+        Database.uploadPhoto("ApplePiePhoto.jpeg","Delicious Apple Pie","#goodeats #food #apple","LeroyJenkins");
     }
 }
