@@ -115,7 +115,6 @@ public class Database {
             System.out.println("Opened database to get userid successfully");
             stmt = c.prepareStatement(sql);
             stmt.setString(1,username);
-            String fquery = stmt.toString();
             ResultSet uid = stmt.executeQuery();
             while(uid.next()) {
                 userid = uid.getInt("USERID");
