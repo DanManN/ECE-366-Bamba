@@ -123,11 +123,14 @@ table,th{
 }
 </style>
 </head>
+
 <div class="Header" id="1234">
     <header>
         <div class="row">
             <div class="column" style="width:25%;">
-                <h1><img src="D:\horse\Downloads\TempBambaLogo.png"></h1>
+                <a href="/home.html">
+                    <h1><img src="./TempBambaLogo.png"></h1>
+                </a>
             </div>
             <div class="column" style="width:50%;float:center">
                 <div class="row">
@@ -140,11 +143,16 @@ table,th{
                 </div>
             </div>
             <div class="column" style="width:10%;float:right;padding-right:10px">
-                 <button type="signin" style="background-color:#e07050;">Sign In</button>
+                <form action="/login.html" style="border:0px">
+                    <button style="background-color:#e07050;">Log In</button>
+                </form>
             </div>
             <div class="column" style="width:10%;float:right;padding-right:10px">
-                <button type="signup" style="background-color:#e07050;">Sign Up</button>
-            </div>            
+                <form action="/signup.html" style="border:0px">
+                    <button style="background-color:#e07050;">Sign Up</button>
+                </form>
+            </div>
+        </div>
     </header>
 </div>
 
@@ -230,8 +238,10 @@ table,th{
                     </a>
                 </th>
             </tr>
+        </table>
 
     </body>
+</div>
 
     <script>
         window.onscroll = function() {makeSticky()};
@@ -249,5 +259,4 @@ table,th{
         }
     </script>
 </div>
-</html>
 

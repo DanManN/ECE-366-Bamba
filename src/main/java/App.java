@@ -18,6 +18,7 @@ public class App {
                                 2010,
                                 10,
                                 10);
+
             return 0;
         });
         post("/uploadphoto",(req,res) -> {

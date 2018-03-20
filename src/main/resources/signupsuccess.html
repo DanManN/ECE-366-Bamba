@@ -1,10 +1,10 @@
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
 body {font-family: Arial, Helvetica, sans-serif;padding:16px;}
 form {border: 3px solid #f1f1f1;}
 
-input[type=text], input[type=password], input[type=file] {
+input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -50,7 +50,6 @@ h1 {
     font-size: 36px;
     font-family: Arial, Helvetica, sans-serif;
     padding: 15px 25px;
-    color: #FFFFFF;
 }
 
 header h1 {
@@ -159,16 +158,8 @@ table,th{
 
 <div class="content">
     <body>
-        <h2>Upload File</h2>
-        <p style="font-weight:bold">Select image to upload:</p>
-        <form action="/uploadphoto" method="post">
-            <div class="container">
-                <input type="file" name="fileToUpload" id="fileToUpload">
-                <input type="text" placeholder="Title" name="title" required>
-                <input type="text" placeholder="Cat,Dog,Bamba,etc..." name="tags">
-            </div>
-            <button type="submit">Upload</button>
-        </form>
+    <h2>Successfully Signed Up to BAMBA!</h2>
+    <p style="text-align:center">Start Uploading Photos <a href="/imgupload.html">Here</a></p>
 
     </body>
 
@@ -188,3 +179,4 @@ table,th{
         }
     </script>
 </div>
+
