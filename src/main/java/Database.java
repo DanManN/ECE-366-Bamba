@@ -44,7 +44,7 @@ public class Database {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return false;
         }
-        System.out.println("Opened database successfully");
+        System.out.println("Initialized database successfully.");
         return true;
     }
     
@@ -54,7 +54,6 @@ public class Database {
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:bamba.db");
-            System.out.println("Opened database successfully");
             String sql = "INSERT INTO USERS (USERID,USERNAME,FULLNAME,EMAIL,PASSWORD,BIRTHDAY) " +
                         "VALUES (?, ?, ?, ?, ?, ?);";
             stmt = c.prepareStatement(sql);
@@ -71,7 +70,7 @@ public class Database {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return false;
         }
-        System.out.println("User Records created successfully");
+        System.out.println(username+"'s records created successfully.");
         return true;
     }
 
@@ -84,7 +83,6 @@ public class Database {
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:bamba.db");
-            System.out.println("Opened database successfully");
             String sql = "INSERT INTO PHOTOS (PHOTOID,USERID,TITLE,TAGS,PHOTO) " +
                     "VALUES (?, ?, ?, ?, ?);";
             stmt = c.prepareStatement(sql);
@@ -101,7 +99,7 @@ public class Database {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             return false;
         }
-        System.out.println("Photo Records created successfully");
+        System.out.println(username+"'s upload records created successfully.");
         return true;
     }
    private static int getUserID(String username){
@@ -112,7 +110,6 @@ public class Database {
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:bamba.db");
-            System.out.println("Opened database to get userid successfully");
             stmt = c.prepareStatement(sql);
             stmt.setString(1,username);
             ResultSet uid = stmt.executeQuery();
@@ -120,6 +117,7 @@ public class Database {
                 userid = uid.getInt("USERID");
             }
             c.close();
+            System.out.println(username+"'s id is: "+userid);
             return userid;
         }
         catch (Exception e) {
@@ -135,22 +133,21 @@ public class Database {
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:bamba.db");
-            System.out.println("Opened database to login successfully");
             stmt = c.prepareStatement(sql);
             stmt.setString(1,username);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) {
                 if(rs.getString("PASSWORD").equals(pass)){
+                    System.out.println(username+" logged in with password: " + pass);
                     return true;
                 }
             }
             c.close();
-            return false;
         }
         catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            return false;
         }
+        return false;
     }
 
 }
