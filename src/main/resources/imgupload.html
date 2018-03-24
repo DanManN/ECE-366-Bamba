@@ -161,7 +161,7 @@ table,th{
     <body>
         <h2>Upload File</h2>
         <p style="font-weight:bold">Select image to upload:</p>
-        <form action="/uploadphoto" method="post">
+        <form action="/uploadphoto" method="post" enctype='multipart/form-data'>
             <div class="container">
                 <input type="file" name="fileToUpload" id="fileToUpload">
                 <input type="text" placeholder="Title" name="title" required>
