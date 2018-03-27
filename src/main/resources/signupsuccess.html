@@ -3,37 +3,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<div class="Header" id="1234">
-    <header>
-        <div class="row">
-            <div class="column" style="width:25%;">
-                <a href="/home.html">
-                    <h1><img src="./TempBambaLogo.png"></h1>
-                </a>
-            </div>
-            <div class="column" style="width:50%;float:center">
-                <div class="row">
-                    <div class="column-right">
-                        <input type="text" placeholder="Search" name="search" required>
-                    </div>
-                    <div class="column-left">
-                        <button type="submit" style="background-color:#e07050;">Search</button>
-                    </div>
-                </div>
-            </div>
-            <div class="column" style="width:10%;float:right;padding-right:10px">
-                <form action="/login.html" style="border:0px">
-                    <button style="background-color:#e07050;">Log In</button>
-                </form>
-            </div>
-            <div class="column" style="width:10%;float:right;padding-right:10px">
-                <form action="/signup.html" style="border:0px">
-                    <button style="background-color:#e07050;">Sign Up</button>
-                </form>
-            </div>
-        </div>
-    </header>
-</div>
+<script src="scripts.js"></script>
+
+<div w3-include-html="header.html" id="1234"></div>  
 
 <div class="content">
     <body>
@@ -42,20 +14,11 @@
 
     </body>
 
-    <script>
-        window.onscroll = function() {makeSticky()};
-
-        var header = document.getElementById("1234");
-        var sticky = header.offsetTop;
-
-        function makeSticky() {
-            if (window.pageYOffset >= sticky) {
-                header.classList.add("sticky");
-          }
-          else{
-            header.classList.remove("sticky");
-          }
-        }
-    </script>
 </div>
+<script>
+    includeHTML();
+    window.onscroll = function(){makeSticky()};
+    var header = document.getElementById("1234");
+    var sticky = header.offsetTop;
+</script>
 

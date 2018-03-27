@@ -3,11 +3,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<header>
-    <a href="/home.html">
-        <h1><img src="./TempBambaLogo.png"></h1>
-    </a>
-</header>
+<script src="scripts.js"></script>
+
+<div w3-include-html="header.html" id="1234"></div>  
 
 <body>
 <h2>Sign Up</h2>
@@ -43,3 +41,10 @@
   </div>
 </form>
 </body>
+
+<script>
+    includeHTML();
+    window.onscroll = function(){makeSticky()};
+    var header = document.getElementById("1234");
+    var sticky = header.offsetTop;
+</script>
