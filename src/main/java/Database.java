@@ -2,6 +2,7 @@
 import java.sql.*;
 
 public class Database {
+    public static int Usercount=0;
 
     public static boolean initDatabase() {
         //create database
@@ -17,7 +18,7 @@ public class Database {
                         " USERNAME           TEXT    NOT NULL, " +
                         " FULLNAME           TEXT    NOT NULL, " +
                         " EMAIL              TEXT    NOT NULL, " +
-                        " PASSWORD           INT     NOT NULL, " +
+                        " PASSWORD           Int     NOT NULL, " +
                         " BIRTHDAY           DATE,             " +
                         " COLLECTIONS        BLOB)";
             stmt.executeUpdate(sql);
@@ -48,7 +49,7 @@ public class Database {
         return true;
     }
     
-    public static boolean createUser(String username, String fullname, String email, String password, int year, int month, int day) {
+    public static boolean createUser(String username, String fullname, String email, int password, int year, int month, int day) {
         Connection c = null;
         PreparedStatement stmt = null;
         try {
@@ -57,11 +58,11 @@ public class Database {
             String sql = "INSERT INTO USERS (USERID,USERNAME,FULLNAME,EMAIL,PASSWORD,BIRTHDAY) " +
                         "VALUES (?, ?, ?, ?, ?, ?);";
             stmt = c.prepareStatement(sql);
-            stmt.setInt(1,1);
+            stmt.setInt(1,++Usercount);
             stmt.setString(2,username);
             stmt.setString(3,fullname);
             stmt.setString(4,email);
-            stmt.setInt(5,88);
+            stmt.setInt(5,password);
             stmt.setDate(6,new Date(year,month,day));
             stmt.executeUpdate();
             stmt.close();
@@ -139,6 +140,7 @@ public class Database {
             while(rs.next()) {
                 if(rs.getString("PASSWORD").equals(pass)){
                     System.out.println(username+" logged in with password: " + pass);
+                    c.close();
                     return true;
                 }
             }

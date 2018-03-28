@@ -21,17 +21,21 @@ public class App {
             Database.createUser(req.queryParams("uname"),
                                 req.queryParams("fname")+req.queryParams("lname"),
                                 req.queryParams("email"),
-                                req.queryParams("psw"),
+                                Integer.parseInt(req.queryParams("psw")),
                                 2010,
                                 10,
                                 10);
-
+            res.redirect("/signupsuccess.html");
             return 0;
         });
 
         post("/login",(req,res) -> {
             Boolean loginsuccess = Database.userLogin(req.queryParams("uname"),
                     req.queryParams("psw"));
+            if(loginsuccess)
+                res.redirect("/home.html");
+            else
+                res.redirect("/login.html");
             return loginsuccess;
         });
 
